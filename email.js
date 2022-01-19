@@ -29,3 +29,9 @@ const logTopDomains = (array, n) => {
   return array.slice(0, n);
 }
 console.log(logTopDomains(domainArray, 10));
+
+//returns the domains that occur more than x number of times
+const minNumOfDomains = (array, n) => {
+  return array.filter(domain => domain[1] > n);
+}
+console.log(minNumOfDomains(domainArray, 200));
