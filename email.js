@@ -2,7 +2,7 @@ const fs = require("fs");
 const txtFile = fs.readFileSync("test.txt", {encoding: 'utf8'});
 
 const regex = /@softwire.com\b/g //regex for softwire.com domain
-const domainRegex = /@\S*/g //regex for all domains
+const domainRegex = /@[^.]*/g //regex for all domains, without regard for different top-level domain. For example hotmail.com and hotmail.co.uk are considered to be the same.
  
 let found = txtFile.match(domainRegex); //creates array of all domains in text file
 
