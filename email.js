@@ -6,16 +6,17 @@ const domainRegex = /@[^.]*/g //regex for all domains, without regard for differ
  
 let found = txtFile.match(domainRegex); //creates array of all domains in text file
 
-const dictionary = {}; //empty dictionary oject
-
 //loops through found array to idenity unique domains, add to dictionary, and keep track of count
-for (let i = 0; i < found.length; i++) {
-  if (dictionary[found[i]] === undefined) {
-    dictionary[found[i]] = 1;
-  } else {
-    dictionary[found[i]] = dictionary[found[i]] + 1;
+const dictionary = found.reduce(function (allDomains, domain) {
+  if (domain in allDomains) {
+    allDomains[domain]++
   }
-}
+  else {
+    allDomains[domain] = 1
+  }
+  return allDomains
+}, {})
+//console.log(dictionary);
 
 //creating 2d array from domain data in dictionary
 const domainArray = []; 
@@ -34,4 +35,4 @@ console.log(logTopDomains(domainArray, 10));
 const minNumOfDomains = (array, n) => {
   return array.filter(domain => domain[1] > n);
 }
-console.log(minNumOfDomains(domainArray, 200));
+//console.log(minNumOfDomains(domainArray, 200));
